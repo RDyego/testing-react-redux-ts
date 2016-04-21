@@ -1,0 +1,50 @@
+{
+  "name": "testing-react-redux-ts",
+  "version": "1.0.0",
+  "description": "Testing React + Redux + TS o// ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "testing-react-redux-ts"
+  },
+  "keywords": [
+    "react",
+    "react-router",
+    "redux",
+    "typescript"
+  ],
+  "author": "Raphaell Dyego <raphaell.dyego@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "bootstrap-sass": "^3.3.6",
+    "bourbon": "^4.2.6",
+    "css-loader": "^0.23.1",
+    "file-loader": "^0.8.5",
+    "font-awesome": "^4.6.1",
+    "node-sass": "^3.4.2",
+    "sass-loader": "^3.2.0",
+    "style-loader": "^0.13.1",
+    "ts-loader": "^0.8.2",
+    "typescript": "^1.8.10",
+    "typings": "^0.8.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.12.15",
+    "webpack-dev-server": "^1.14.1",
+    "webpack-livereload-plugin": "^0.8.1"
+  },
+  "dependencies": {
+    "lodash": "^4.11.1",
+    "node-sass": "^3.5.1",
+    "node-uuid": "^1.4.7",
+    "react": "^15.0.1",
+    "react-bootstrap": "^0.28.5",
+    "react-dom": "^15.0.1",
+    "react-redux": "^4.4.5",
+    "react-router": "^2.2.2",
+    "react-router-redux": "^4.0.2",
+    "redux": "^3.4.0"
+  }
+}
