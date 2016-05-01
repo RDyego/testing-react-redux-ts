@@ -1,7 +1,8 @@
 const path = require('path');
-const _ = require('lodash');
 const webpack = require('webpack');
-const LiveReloadPlugin = require('webpack-livereload-plugin');
+const merge = require('webpack-merge');
+
+const NpmInstallPlugin = require('npm-install-webpack-plugin');
 
 const PATHS = {
     src: path.join(__dirname, 'src'),
@@ -9,8 +10,8 @@ const PATHS = {
 };
 
 const commonConfig = {
-    // debug: true,
-    // devtool: 'source-map',
+    debug: true,
+    devtool: 'source-map',
 	entry: {
         filename: PATHS.src + '/index.tsx'
     },
@@ -19,10 +20,9 @@ const commonConfig = {
 		filename: 'bundle.js'
 	},
 	resolve:{
-		extensions: ['', '.webpack.js', '.web.js', '.js', '.ts', '.tsx']
+		extensions: ['', '.webpack.js', '.scss', '.web.js', '.js', '.ts', '.tsx']
 	},
     plugins: [
-        new LiveReloadPlugin()
         //new webpack.optimize.UglifyJsPlugin()
     ],
     module: {
@@ -30,7 +30,17 @@ const commonConfig = {
             {
                 test: /\.tsx?$/,
                 include: /src/,
-                loader: 'ts-loader'
+                loader: 'ts'
+            },
+            {
+                test: /\.s?css$/,
+                include: /src/,
+                loader: 'style!css!sass'
+            },
+            {
+                test: /\.(otf|eot|woff|woff2|ttf|svg)(\?\S*)?$/,
+                include: /src/,
+                loader: 'url'
             }
         ]
     }
@@ -43,8 +53,25 @@ if (TARGET === 'start' || !TARGET) {
         devTool: 'eval-source-map',
         devServer: {
             contentBase: PATHS.build,
-        }
+            historyApiFallback: true,
+            hot: true,
+            inline: true,
+            progress: true,
+            stats: 'errors-only',
+            host: process.env.HOST,
+            port: process.env.PORT
+        },
+        plugins: [
+            new webpack.HotModuleReplacementPlugin(),
+            new NpmInstallPlugin({
+                save: true
+            })
+        ]
 	};
 
-	module.exports = _.merge(commonConfig, devConfig);
+	module.exports = merge(commonConfig, devConfig);
+}
+
+if(TARGET === 'build') {
+  module.exports = merge(commonConfig, {});
 }
